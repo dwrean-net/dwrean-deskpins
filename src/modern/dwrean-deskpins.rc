@@ -4,8 +4,8 @@
 IDI_DWREAN_DESKPINS ICON "../../assets/dwrean-deskpins.ico"
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,2,0,0
- PRODUCTVERSION 2,2,0,0
+ FILEVERSION 2,2,1,0
+ PRODUCTVERSION 2,2,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS VS_FF_DEBUG
@@ -22,12 +22,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "dwrean.net\0"
             VALUE "FileDescription", "dwrean DeskPins - Greek UI with clickable realistic pin markers\0"
-            VALUE "FileVersion", "2.2.0 Beta\0"
+            VALUE "FileVersion", "2.2.1 Beta\0"
             VALUE "InternalName", "dwrean-deskpins\0"
             VALUE "LegalCopyright", "DeskPins © Elias Fotinis; modernization © dwrean.net\0"
             VALUE "OriginalFilename", "dwrean-deskpins.exe\0"
             VALUE "ProductName", "dwrean DeskPins\0"
-            VALUE "ProductVersion", "2.2.0 Beta\0"
+            VALUE "ProductVersion", "2.2.1 Beta\0"
         END
     END
     BLOCK "VarFileInfo"
