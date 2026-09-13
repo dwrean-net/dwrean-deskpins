@@ -1,0 +1,22 @@
+# Modern CMake / Visual Studio build output
+/build/
+/out/
+/.vs/
+/CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.sln.DotSettings.user
+*.user
+*.VC.db
+*.VC.opendb
+*.pdb
+*.ilk
+*.obj
+*.tlog
+*.lastbuildstate
+*.log
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
