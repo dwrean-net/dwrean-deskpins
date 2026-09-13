@@ -13,6 +13,8 @@ target_compile_definitions(dwrean-deskpins PRIVATE
     _UNICODE
     WIN32_LEAN_AND_MEAN
     NOMINMAX
+    WINVER=0x0A00
+    _WIN32_WINNT=0x0A00
 )
 
 if(MSVC)
