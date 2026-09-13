@@ -1,0 +1,30 @@
+name: Build modern DeskPins
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x64, Win32]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -S . -B build -A ${{ matrix.arch }}
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Upload portable executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: dwrean-deskpins-${{ matrix.arch }}
+          path: build/Release/dwrean-deskpins.exe
+          if-no-files-found: error
