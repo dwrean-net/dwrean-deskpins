@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include "resource.h"
+
 namespace {
 
 constexpr wchar_t kAppName[] = L"dwrean DeskPins";
@@ -305,8 +307,8 @@ void finishSelection() {
 
 void showAbout() {
     MessageBoxW(nullptr,
-                L"dwrean DeskPins 2.0 alpha\n\n"
-                L"A modernized fork of DeskPins for current Windows versions.\n\n"
+                L"dwrean DeskPins 2.0 Beta\n\n"
+                L"A lightweight modern fork of DeskPins for Windows 10 and Windows 11.\n\n"
                 L"Left-click the tray icon to choose a window.\n"
                 L"Ctrl+Alt+P toggles the currently active window.\n\n"
                 L"Original DeskPins by Elias Fotinis.\n"
@@ -430,7 +432,10 @@ bool addTrayIcon() {
     g_trayIcon.uID = kTrayIconId;
     g_trayIcon.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
     g_trayIcon.uCallbackMessage = WM_TRAYICON;
-    g_trayIcon.hIcon = LoadIconW(nullptr, IDI_APPLICATION);
+    g_trayIcon.hIcon = LoadIconW(g_instance, MAKEINTRESOURCEW(IDI_DWREAN_DESKPINS));
+    if (!g_trayIcon.hIcon) {
+        g_trayIcon.hIcon = LoadIconW(nullptr, IDI_APPLICATION);
+    }
     wcsncpy_s(g_trayIcon.szTip, kAppName, _TRUNCATE);
 
     if (!Shell_NotifyIconW(NIM_ADD, &g_trayIcon)) {
@@ -526,10 +531,17 @@ LRESULT CALLBACK mainWindowProc(HWND window, UINT message, WPARAM wParam, LPARAM
 }
 
 bool registerWindowClasses() {
+    HICON appIcon = LoadIconW(g_instance, MAKEINTRESOURCEW(IDI_DWREAN_DESKPINS));
+    if (!appIcon) {
+        appIcon = LoadIconW(nullptr, IDI_APPLICATION);
+    }
+
     WNDCLASSEXW mainClass{};
     mainClass.cbSize = sizeof(mainClass);
     mainClass.lpfnWndProc = mainWindowProc;
     mainClass.hInstance = g_instance;
+    mainClass.hIcon = appIcon;
+    mainClass.hIconSm = appIcon;
     mainClass.lpszClassName = kMainClass;
 
     if (!RegisterClassExW(&mainClass)) {

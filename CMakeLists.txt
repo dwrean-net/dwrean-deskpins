@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(dwrean_deskpins VERSION 2.0.0 LANGUAGES CXX)
+project(dwrean_deskpins VERSION 2.0.0 LANGUAGES CXX RC)
 
 add_executable(dwrean-deskpins WIN32
     src/modern/main.cpp
+    src/modern/dwrean-deskpins.rc
 )
 
 target_compile_features(dwrean-deskpins PRIVATE cxx_std_20)
